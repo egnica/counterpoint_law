@@ -9,7 +9,6 @@ const PRACTICE_AREA_BASE_PATH = "/practice-areas";
 
 const toParagraphs = (body) => {
   if (!body) return [];
-
   return Array.isArray(body) ? body.filter(Boolean) : [body];
 };
 
@@ -26,24 +25,47 @@ const isChildOf = (practiceArea, parentSlug) => {
 const getChildPracticeAreas = (parentSlug) =>
   Object.entries(practiceAreas)
     .filter(([, practiceArea]) => isChildOf(practiceArea, parentSlug))
-    .map(([slug, practiceArea]) => ({
-      slug,
-      ...practiceArea,
-    }));
+    .map(([slug, practiceArea]) => ({ slug, ...practiceArea }));
+
+const getParentSlugs = (practiceArea) => {
+  if (!practiceArea?.parent) return [];
+
+  return Array.isArray(practiceArea.parent)
+    ? practiceArea.parent
+    : [practiceArea.parent];
+};
+
+const getNavigationParent = (practiceArea, fromSlug) => {
+  const parentSlugs = getParentSlugs(practiceArea);
+
+  if (!parentSlugs.length) return null;
+
+  if (fromSlug && parentSlugs.includes(fromSlug) && practiceAreas[fromSlug]) {
+    return {
+      slug: fromSlug,
+      ...practiceAreas[fromSlug],
+    };
+  }
+
+  if (parentSlugs.length === 1 && practiceAreas[parentSlugs[0]]) {
+    return {
+      slug: parentSlugs[0],
+      ...practiceAreas[parentSlugs[0]],
+    };
+  }
+
+  return null;
+};
 
 export function generateStaticParams() {
-  return Object.keys(practiceAreas).map((slug) => ({
-    slug,
-  }));
+  return Object.keys(practiceAreas).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const practiceArea = practiceAreas[slug];
 
-  if (!practiceArea) {
-    return {};
-  }
+  if (!practiceArea) return {};
 
   return {
     title: `${practiceArea.title} | Counterpoint Law`,
@@ -60,9 +82,7 @@ function Paragraphs({ body }) {
 }
 
 function SectionImage({ image, sizes = "(max-width: 800px) 100vw, 50vw" }) {
-  if (!hasImage(image)) {
-    return null;
-  }
+  if (!hasImage(image)) return null;
 
   return (
     <div className={styles.sectionImage}>
@@ -93,8 +113,7 @@ function StandardSection({ block, index }) {
     <section className={sectionClasses}>
       <div className={styles.sectionInner}>
         <div className={styles.sectionCopy}>
-          {block.title ? <h2>{block.title}</h2> : null}
-
+          <h2>{block.title}</h2>
           <Paragraphs body={block.body} />
 
           {block.link?.href && block.link?.label ? (
@@ -116,7 +135,7 @@ function ListSection({ block }) {
     <section className={styles.listSection}>
       <div className={styles.constrainedSection}>
         <div className={styles.sectionHeading}>
-          {block.title ? <h2>{block.title}</h2> : null}
+          <h2>{block.title}</h2>
           <Paragraphs body={block.body} />
         </div>
 
@@ -129,6 +148,10 @@ function ListSection({ block }) {
           <ul className={styles.featureList}>
             {(block.items || []).map((item, index) => (
               <li key={`${item.lead || item.text}-${index}`}>
+                <span className={styles.listNumber} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
                 <div>
                   {item.lead ? <strong>{item.lead}</strong> : null}
                   {item.text ? <p>{item.text}</p> : null}
@@ -149,7 +172,7 @@ function StepsSection({ block }) {
         <div className={styles.stepsIntroduction}>
           <div>
             <p className={styles.eyebrow}>How We Work</p>
-            {block.title ? <h2>{block.title}</h2> : null}
+            <h2>{block.title}</h2>
           </div>
 
           <div className={styles.stepsBody}>
@@ -161,7 +184,6 @@ function StepsSection({ block }) {
           {(block.steps || []).map((step, index) => (
             <li key={`${step.heading || step.text}-${index}`}>
               <span className={styles.stepNumber}>{index + 1}</span>
-
               {step.heading ? <h3>{step.heading}</h3> : null}
               {step.text ? <p>{step.text}</p> : null}
             </li>
@@ -175,9 +197,7 @@ function StepsSection({ block }) {
 function PracticeLinksSection({ block, currentSlug }) {
   const children = getChildPracticeAreas(currentSlug);
 
-  if (!children.length) {
-    return null;
-  }
+  if (!children.length) return null;
 
   return (
     <section className={styles.practiceLinksSection}>
@@ -185,7 +205,7 @@ function PracticeLinksSection({ block, currentSlug }) {
         <div className={styles.practiceLinksHeading}>
           <div>
             <p className={styles.eyebrow}>Explore Our Services</p>
-            {block.title ? <h2>{block.title}</h2> : null}
+            <h2>{block.title}</h2>
           </div>
 
           <div className={styles.practiceLinksIntro}>
@@ -197,7 +217,10 @@ function PracticeLinksSection({ block, currentSlug }) {
           {children.map((child) => (
             <Link
               className={styles.practiceCard}
-              href={`${PRACTICE_AREA_BASE_PATH}/${child.slug}`}
+              href={{
+                pathname: `${PRACTICE_AREA_BASE_PATH}/${child.slug}`,
+                query: { from: currentSlug },
+              }}
               key={child.slug}
             >
               <span className={styles.cardTitle}>{child.title}</span>
@@ -207,8 +230,7 @@ function PracticeLinksSection({ block, currentSlug }) {
               ) : null}
 
               <span className={styles.cardLink}>
-                Learn More
-                <span aria-hidden="true">→</span>
+                Learn More <span aria-hidden="true">→</span>
               </span>
             </Link>
           ))}
@@ -237,7 +259,15 @@ function ContentBlock({ block, currentSlug, index }) {
   }
 }
 
-function PracticeAreaHero({ practiceArea }) {
+function PracticeAreaHero({ navigationParent, practiceArea }) {
+  const backHref = navigationParent
+    ? `${PRACTICE_AREA_BASE_PATH}/${navigationParent.slug}`
+    : PRACTICE_AREA_BASE_PATH;
+
+  const backLabel = navigationParent
+    ? `Back to ${navigationParent.title}`
+    : "Back to All Practice Areas";
+
   return (
     <header className={styles.hero}>
       <div className={styles.heroInner}>
@@ -245,12 +275,27 @@ function PracticeAreaHero({ practiceArea }) {
           <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
             <Link href={PRACTICE_AREA_BASE_PATH}>Practice Areas</Link>
 
+            {navigationParent ? (
+              <>
+                <span aria-hidden="true">/</span>
+
+                <Link
+                  href={`${PRACTICE_AREA_BASE_PATH}/${navigationParent.slug}`}
+                >
+                  {navigationParent.title}
+                </Link>
+              </>
+            ) : null}
+
             <span aria-hidden="true">/</span>
-            <span>{practiceArea.title}</span>
+            <span aria-current="page">{practiceArea.title}</span>
           </nav>
-
+          <Link className={styles.backLink} href={backHref}>
+            <span aria-hidden="true">←</span>
+            <span>{backLabel}</span>
+          </Link>
+          <br />
           <p className={styles.eyebrow}>Counterpoint Law</p>
-
           <h1>{practiceArea.title}</h1>
 
           {practiceArea.summary ? (
@@ -284,12 +329,11 @@ function ContactCallout() {
     <section className={styles.contactCallout}>
       <div className={styles.contactCalloutInner}>
         <p className={styles.eyebrow}>Start a Conversation</p>
-
-        <h2>Let’s Discuss Your Legal Needs</h2>
+        <h2>Let’s Discuss Your Business</h2>
 
         <p>
-          Schedule a consultation to discuss your objectives, legal needs, and
-          the next steps available to you.
+          Schedule a consultation to discuss your legal needs, business
+          objectives, and the next steps available to you.
         </p>
 
         <Link className={styles.lightButton} href="/contact">
@@ -300,13 +344,16 @@ function ContactCallout() {
   );
 }
 
-export default async function PracticeAreaPage({ params }) {
+export default async function PracticeAreaPage({ params, searchParams }) {
   const { slug } = await params;
+  const resolvedSearchParams = await searchParams;
   const practiceArea = practiceAreas[slug];
 
-  if (!practiceArea) {
-    notFound();
-  }
+  if (!practiceArea) notFound();
+
+  const fromParam = resolvedSearchParams?.from;
+  const fromSlug = Array.isArray(fromParam) ? fromParam[0] : fromParam;
+  const navigationParent = getNavigationParent(practiceArea, fromSlug);
 
   const contentBlocks = Array.isArray(practiceArea.content)
     ? practiceArea.content
@@ -314,7 +361,10 @@ export default async function PracticeAreaPage({ params }) {
 
   return (
     <main className={styles.page}>
-      <PracticeAreaHero practiceArea={practiceArea} />
+      <PracticeAreaHero
+        navigationParent={navigationParent}
+        practiceArea={practiceArea}
+      />
 
       {contentBlocks.map((block, index) => (
         <ContentBlock
