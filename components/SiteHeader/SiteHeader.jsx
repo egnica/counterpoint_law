@@ -7,7 +7,7 @@ import styles from "./SiteHeader.module.css";
 const overlayNavigation = [
   { label: "About", href: "/vincent-peppe" },
   { label: "Practice Areas", href: "/practice-areas" },
-  { label: "Flat-Rate Services", href: "/#flat-rates" },
+  { label: "Flat-Rate Services", href: "/flat-rate-services" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -117,6 +117,10 @@ export default function SiteHeader({ featuredPractices = [] }) {
                 </Link>
               </div>
             </div>
+
+            <Link href="/flat-rate-services" onClick={closeMenu}>
+              Flat-Rate Services
+            </Link>
 
             <Link href="/#contact" onClick={closeMenu}>
               Contact

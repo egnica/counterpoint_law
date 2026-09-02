@@ -4,7 +4,7 @@ import styles from "./SiteFooter.module.css";
 const footerLinks = [
   { label: "About", href: "/vincent-peppe" },
   { label: "Practice Areas", href: "/practice-areas" },
-  { label: "Flat-Rate Services", href: "/#flat-rates" },
+  { label: "Flat-Rate Services", href: "/flat-rate-services" },
   { label: "Contact", href: "/#contact" },
 ];
 
