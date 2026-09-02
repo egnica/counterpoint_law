@@ -54,12 +54,22 @@ export default function Home() {
   return (
     <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="home-title">
-        <div className={styles.heroPanelVisual} aria-hidden="true">
+        <div
+          className={styles.heroPanelVisual}
+          aria-hidden="true"
+          style={{
+            inset: 0,
+            width: "100%",
+            clipPath: "none",
+            background:
+              "linear-gradient(90deg, rgba(5, 11, 31, 0.9) 0%, rgba(7, 20, 57, 0.76) 38%, rgba(7, 20, 57, 0.38) 58%, rgba(7, 20, 57, 0.08) 76%, rgba(7, 20, 57, 0) 88%)",
+          }}
+        >
           <div className={styles.heroMark}>
-            <span />
-            <span />
-            <span />
-            <span />
+            <span style={{ background: "rgba(22, 135, 183, 0.28)" }} />
+            <span style={{ background: "rgba(22, 135, 183, 0.28)" }} />
+            <span style={{ background: "rgba(22, 135, 183, 0.28)" }} />
+            <span style={{ background: "rgba(22, 135, 183, 0.28)" }} />
           </div>
         </div>
 
