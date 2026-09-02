@@ -5,10 +5,10 @@
 .mark {
   position: absolute;
   z-index: 0;
-  width: clamp(820px, 76vw, 1240px);
+  width: clamp(720px, 68vw, 1080px);
   aspect-ratio: 1;
   right: clamp(-430px, -18vw, -190px);
-  top: 48%;
+  top: 32%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(54px, 6vw, 98px);
@@ -27,18 +27,18 @@
 
 @media (max-width: 900px) {
   .mark {
-    width: 920px;
-    right: -470px;
-    top: 48%;
+    width: 820px;
+    right: -400px;
+    top: 34%;
     opacity: 0.045;
   }
 }
 
 @media (max-width: 620px) {
   .mark {
-    width: 720px;
+    width: 640px;
     right: -430px;
-    top: 58%;
+    top: 44%;
     opacity: 0.04;
   }
 }
