@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./SiteHeader.module.css";
 
-const navigation = [
+const overlayNavigation = [
+  { label: "About", href: "/vincent-peppe" },
   { label: "Practice Areas", href: "/practice-areas" },
-  { label: "Vincent Peppe", href: "/vincent-peppe" },
   { label: "Flat-Rate Services", href: "/#flat-rates" },
   { label: "Contact", href: "/#contact" },
 ];
@@ -22,8 +22,9 @@ function DotMark() {
   );
 }
 
-export default function SiteHeader() {
+export default function SiteHeader({ featuredPractices = [] }) {
   const [open, setOpen] = useState(false);
+  const [practiceOpen, setPracticeOpen] = useState(false);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -36,8 +37,26 @@ export default function SiteHeader() {
     };
   }, [open]);
 
+  useEffect(() => {
+    function handleEscape(event) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        setPracticeOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, []);
+
   function closeMenu() {
     setOpen(false);
+    setPracticeOpen(false);
+  }
+
+  function toggleMainMenu() {
+    setPracticeOpen(false);
+    setOpen((current) => !current);
   }
 
   return (
@@ -49,9 +68,60 @@ export default function SiteHeader() {
         </Link>
 
         <div className={styles.actions}>
-          <Link href="/#contact" className={styles.contactLink} onClick={closeMenu}>
-            Contact
-          </Link>
+          <nav className={styles.desktopNav} aria-label="Primary navigation">
+            <Link href="/vincent-peppe" onClick={closeMenu}>
+              About
+            </Link>
+
+            <div
+              className={styles.practiceNav}
+              onMouseEnter={() => setPracticeOpen(true)}
+              onMouseLeave={() => setPracticeOpen(false)}
+            >
+              <button
+                type="button"
+                className={styles.practiceTrigger}
+                aria-expanded={practiceOpen}
+                aria-controls="practice-area-menu"
+                onClick={() => setPracticeOpen((current) => !current)}
+              >
+                Practice Areas
+                <span aria-hidden="true">⌄</span>
+              </button>
+
+              <div
+                id="practice-area-menu"
+                className={`${styles.practiceDropdown} ${
+                  practiceOpen ? styles.practiceDropdownOpen : ""
+                }`}
+              >
+                <p className={styles.dropdownEyebrow}>Featured Practices</p>
+                <div className={styles.dropdownLinks}>
+                  {featuredPractices.map((practice) => (
+                    <Link
+                      key={practice.slug}
+                      href={`/practice-areas/${practice.slug}`}
+                      onClick={closeMenu}
+                    >
+                      <span>{practice.title}</span>
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/practice-areas"
+                  className={styles.viewAll}
+                  onClick={closeMenu}
+                >
+                  View All Practice Areas <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+
+            <Link href="/#contact" onClick={closeMenu}>
+              Contact
+            </Link>
+          </nav>
 
           <button
             type="button"
@@ -59,7 +129,7 @@ export default function SiteHeader() {
             aria-expanded={open}
             aria-controls="site-navigation"
             aria-label={open ? "Close navigation" : "Open navigation"}
-            onClick={() => setOpen((current) => !current)}
+            onClick={toggleMainMenu}
           >
             <span />
             <span />
@@ -72,22 +142,40 @@ export default function SiteHeader() {
         className={`${styles.menuOverlay} ${open ? styles.menuOverlayOpen : ""}`}
         aria-hidden={!open}
       >
-        <nav className={styles.menuInner} aria-label="Primary navigation">
-          <div className={styles.menuIntro}>
-            <p className={styles.menuEyebrow}>Counterpoint Law</p>
-            <p>
-              Business-minded legal counsel for companies, creators, innovators,
-              and professionals.
-            </p>
+        <nav className={styles.menuInner} aria-label="Expanded navigation">
+          <div className={styles.menuMain}>
+            <p className={styles.menuEyebrow}>Navigate</p>
+            <div className={styles.menuLinks}>
+              {overlayNavigation.map((item) => (
+                <Link key={item.label} href={item.href} onClick={closeMenu}>
+                  <span>{item.label}</span>
+                  <span aria-hidden="true">↗</span>
+                </Link>
+              ))}
+            </div>
           </div>
 
-          <div className={styles.menuLinks}>
-            {navigation.map((item) => (
-              <Link key={item.label} href={item.href} onClick={closeMenu}>
-                <span>{item.label}</span>
-                <span aria-hidden="true">↗</span>
-              </Link>
-            ))}
+          <div className={styles.featuredMenu}>
+            <p className={styles.menuEyebrow}>Featured Practices</p>
+            <div className={styles.featuredLinks}>
+              {featuredPractices.map((practice) => (
+                <Link
+                  key={practice.slug}
+                  href={`/practice-areas/${practice.slug}`}
+                  onClick={closeMenu}
+                >
+                  <span>{practice.title}</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/practice-areas"
+              className={styles.overlayViewAll}
+              onClick={closeMenu}
+            >
+              View All Practice Areas <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </nav>
       </div>

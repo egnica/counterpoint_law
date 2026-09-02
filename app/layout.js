@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteFooter from "@/components/SiteFooter/SiteFooter";
 import SiteHeader from "@/components/SiteHeader/SiteHeader";
+import { practiceAreas } from "@/lib/practiceAreas";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,6 +13,14 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const featuredPractices = Object.entries(practiceAreas)
+  .filter(([, area]) => area.parent === null && area.homeOrder)
+  .sort(([, a], [, b]) => a.homeOrder - b.homeOrder)
+  .map(([slug, area]) => ({
+    slug,
+    title: area.title,
+  }));
 
 export const metadata = {
   title: {
@@ -26,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <SiteHeader />
+        <SiteHeader featuredPractices={featuredPractices} />
         {children}
         <SiteFooter />
       </body>

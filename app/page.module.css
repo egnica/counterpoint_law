@@ -120,27 +120,29 @@
 .practiceGrid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .practiceCard {
-  min-height: 152px;
+  min-height: 164px;
   position: relative;
-  padding: 22px 20px;
+  padding: 24px 21px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 18px;
   overflow: hidden;
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
   background-position: center;
   background-size: cover;
   color: white;
-  font-size: clamp(0.94rem, 1.25vw, 1.15rem);
-  font-weight: 770;
-  line-height: 1.15;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  font-size: clamp(0.98rem, 1.28vw, 1.2rem);
+  font-weight: 790;
+  line-height: 1.13;
   transition:
-    background-size 280ms ease,
-    filter 220ms ease;
+    filter 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .practiceCard::before {
@@ -151,38 +153,99 @@
   transition: background-color 220ms ease;
 }
 
+.practiceCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0);
+  transition: border-color 220ms ease;
+  pointer-events: none;
+}
+
 .practiceCard > span {
   position: relative;
   z-index: 1;
 }
 
+.practiceTitle {
+  max-width: 82%;
+  text-shadow: 0 2px 18px rgba(3, 10, 35, 0.48);
+}
+
 .practiceCard:hover::before {
-  background: rgba(10, 111, 157, 0.34);
+  background: rgba(10, 111, 157, 0.32);
+}
+
+.practiceCard:hover::after {
+  border-color: rgba(255, 255, 255, 0.52);
 }
 
 .practiceArrow {
-  font-size: 1.05rem;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  background: rgba(7, 17, 55, 0.24);
+  backdrop-filter: blur(4px);
+  font-size: 0.95rem;
   font-weight: 500;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.practiceCard:hover .practiceArrow {
+  transform: translate(2px, -2px);
+  background: white;
+  color: var(--cp-navy);
 }
 
 .morePractices {
-  min-height: 54px;
+  min-height: 64px;
   padding: 0 5vw;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
+  justify-content: space-between;
+  gap: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.26);
   background: var(--cp-blue);
   color: white;
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.84rem;
+  font-weight: 820;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  transition: background-color 180ms ease;
+  transition:
+    background-color 180ms ease,
+    padding-inline 180ms ease;
+}
+
+.morePractices span:last-child {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  font-size: 1rem;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .morePractices:hover {
+  padding-inline: 5.4vw 4.6vw;
   background: var(--cp-blue-bright);
+}
+
+.morePractices:hover span:last-child {
+  transform: translateX(2px);
+  background: white;
+  color: var(--cp-navy);
 }
 
 .positioning {
@@ -436,12 +499,8 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .practiceCard:nth-child(3) {
-    border-right: 0;
-  }
-
   .practiceCard:nth-child(n + 4) {
-    min-height: 132px;
+    min-height: 138px;
   }
 
   .practiceCard:nth-child(4) {
@@ -512,10 +571,21 @@
   .practiceCard,
   .practiceCard:nth-child(n + 4),
   .practiceCard:nth-child(4) {
-    min-height: 112px;
+    min-height: 116px;
     grid-column: auto;
-    border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .practiceTitle {
+    max-width: 78%;
+  }
+
+  .morePractices {
+    min-height: 60px;
+    padding-inline: 22px;
+  }
+
+  .morePractices:hover {
+    padding-inline: 22px;
   }
 
   .positioning,
@@ -574,7 +644,10 @@
   .heroCta,
   .practiceCard,
   .practiceCard::before,
+  .practiceCard::after,
+  .practiceArrow,
   .morePractices,
+  .morePractices span:last-child,
   .needCard {
     transition: none;
   }

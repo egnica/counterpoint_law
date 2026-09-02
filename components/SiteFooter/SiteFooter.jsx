@@ -2,8 +2,8 @@ import Link from "next/link";
 import styles from "./SiteFooter.module.css";
 
 const footerLinks = [
+  { label: "About", href: "/vincent-peppe" },
   { label: "Practice Areas", href: "/practice-areas" },
-  { label: "Vincent Peppe", href: "/vincent-peppe" },
   { label: "Flat-Rate Services", href: "/#flat-rates" },
   { label: "Contact", href: "/#contact" },
 ];
@@ -11,6 +11,7 @@ const footerLinks = [
 function DotMark() {
   return (
     <span className={styles.dotMark} aria-hidden="true">
+      <span />
       <span />
       <span />
       <span />

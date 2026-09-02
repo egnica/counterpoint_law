@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ContactSection from "@/components/ContactSection/ContactSection";
+import ImageDivider from "@/components/ImageDivider/ImageDivider";
 import { practiceAreas } from "@/lib/practiceAreas";
 import styles from "./page.module.css";
 
@@ -85,10 +86,10 @@ export default function Home() {
               href={`/practice-areas/${practice.slug}`}
               className={styles.practiceCard}
               style={{
-                backgroundImage: `linear-gradient(180deg, rgba(6, 17, 55, 0.15), rgba(6, 17, 55, 0.8)), url("${practice.image.src}")`,
+                backgroundImage: `linear-gradient(90deg, rgba(6, 17, 55, 0.34) 0%, rgba(6, 17, 55, 0.08) 50%, rgba(6, 17, 55, 0.34) 100%), linear-gradient(180deg, rgba(6, 17, 55, 0.16) 0%, rgba(6, 17, 55, 0.9) 100%), url("${practice.image.src}")`,
               }}
             >
-              <span>{practice.title}</span>
+              <span className={styles.practiceTitle}>{practice.title}</span>
               <span className={styles.practiceArrow} aria-hidden="true">
                 ↗
               </span>
@@ -132,6 +133,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <ImageDivider />
 
       <section className={styles.needs}>
         <div className={styles.needsHeader}>

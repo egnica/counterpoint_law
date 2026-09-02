@@ -15,13 +15,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
+  gap: 34px;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 13px;
+  flex: 0 0 auto;
   color: var(--cp-navy);
   font-size: 0.98rem;
   font-weight: 800;
@@ -47,25 +48,159 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 22px;
+  justify-content: flex-end;
+  gap: 28px;
 }
 
-.contactLink {
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
+}
+
+.desktopNav > a,
+.practiceTrigger {
+  position: relative;
+  border: 0;
+  background: transparent;
   color: var(--cp-navy);
-  font-size: 0.91rem;
-  font-weight: 750;
-  letter-spacing: 0.045em;
+  font-size: 0.82rem;
+  font-weight: 790;
+  letter-spacing: 0.075em;
   text-transform: uppercase;
-  transition: color 180ms ease;
+  cursor: pointer;
 }
 
-.contactLink:hover {
+.desktopNav > a::after,
+.practiceTrigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  background: var(--cp-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.desktopNav > a:hover::after,
+.desktopNav > a:focus-visible::after,
+.practiceTrigger:hover::after,
+.practiceTrigger:focus-visible::after,
+.practiceTrigger[aria-expanded="true"]::after {
+  transform: scaleX(1);
+}
+
+.practiceNav {
+  position: relative;
+}
+
+.practiceTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.practiceTrigger > span {
+  position: relative;
+  top: -1px;
+  font-size: 0.95rem;
+  transition: transform 180ms ease;
+}
+
+.practiceTrigger[aria-expanded="true"] > span {
+  transform: rotate(180deg);
+}
+
+.practiceDropdown {
+  position: absolute;
+  top: calc(100% + 25px);
+  left: 50%;
+  width: min(540px, 72vw);
+  padding: 28px 30px 26px;
+  border: 1px solid rgba(11, 25, 79, 0.1);
+  border-top: 3px solid var(--cp-blue);
+  border-radius: 0 0 14px 14px;
+  background: white;
+  box-shadow: 0 24px 55px rgba(7, 17, 55, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -8px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
+}
+
+.practiceDropdownOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.dropdownEyebrow,
+.menuEyebrow {
   color: var(--cp-blue);
+  font-size: 0.72rem;
+  font-weight: 820;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.dropdownLinks {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 26px;
+}
+
+.dropdownLinks a {
+  min-height: 54px;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid var(--cp-line);
+  color: var(--cp-navy);
+  font-size: 0.92rem;
+  font-weight: 720;
+  line-height: 1.25;
+  transition:
+    color 160ms ease,
+    padding-left 160ms ease;
+}
+
+.dropdownLinks a:hover {
+  padding-left: 5px;
+  color: var(--cp-blue);
+}
+
+.dropdownLinks a span:last-child {
+  flex: 0 0 auto;
+  color: var(--cp-blue);
+}
+
+.viewAll {
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--cp-blue);
+  font-size: 0.84rem;
+  font-weight: 790;
+}
+
+.viewAll:hover {
+  color: var(--cp-navy);
 }
 
 .menuButton {
   width: 48px;
   height: 48px;
+  flex: 0 0 auto;
   border: 0;
   border-radius: 50%;
   background: var(--cp-navy);
@@ -128,27 +263,17 @@
   min-height: calc(100vh - 76px);
   width: min(100%, 1500px);
   margin: 0 auto;
-  padding: clamp(54px, 8vw, 120px) 6vw;
+  padding: clamp(54px, 7vw, 102px) 6vw 80px;
   display: grid;
-  grid-template-columns: minmax(240px, 0.75fr) minmax(420px, 1.25fr);
-  gap: clamp(56px, 9vw, 150px);
+  grid-template-columns: minmax(380px, 1.05fr) minmax(330px, 0.95fr);
+  gap: clamp(70px, 9vw, 145px);
   align-items: start;
 }
 
-.menuIntro {
-  max-width: 390px;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-  line-height: 1.55;
-}
-
-.menuEyebrow {
+.menuMain .menuEyebrow,
+.featuredMenu .menuEyebrow {
   margin-bottom: 20px;
   color: #8fd0ea;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
 }
 
 .menuLinks {
@@ -157,13 +282,13 @@
 }
 
 .menuLinks a {
-  padding: 18px 0;
+  padding: 17px 0 19px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  font-size: clamp(2.1rem, 4.4vw, 4.75rem);
+  font-size: clamp(2.3rem, 4.2vw, 4.5rem);
   font-weight: 760;
   letter-spacing: -0.045em;
   line-height: 1;
@@ -174,12 +299,68 @@
 
 .menuLinks a:hover {
   color: #8fd0ea;
-  padding-left: 12px;
+  padding-left: 10px;
 }
 
 .menuLinks a span:last-child {
   font-size: 0.38em;
   font-weight: 500;
+}
+
+.featuredMenu {
+  padding-top: 4px;
+}
+
+.featuredLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.featuredLinks a {
+  min-height: 62px;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  font-weight: 650;
+  line-height: 1.25;
+  transition:
+    color 180ms ease,
+    padding-left 180ms ease;
+}
+
+.featuredLinks a:hover {
+  padding-left: 8px;
+  color: #8fd0ea;
+}
+
+.featuredLinks a span:last-child {
+  flex: 0 0 auto;
+  color: #8fd0ea;
+}
+
+.overlayViewAll {
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #8fd0ea;
+  font-size: 0.88rem;
+  font-weight: 780;
+}
+
+.overlayViewAll:hover {
+  color: white;
+}
+
+@media (max-width: 920px) {
+  .desktopNav {
+    display: none;
+  }
 }
 
 @media (max-width: 800px) {
@@ -199,8 +380,8 @@
     gap: 3px;
   }
 
-  .contactLink {
-    display: none;
+  .actions {
+    gap: 0;
   }
 
   .menuButton {
@@ -214,25 +395,31 @@
 
   .menuInner {
     min-height: calc(100vh - 68px);
-    padding: 48px 24px 70px;
+    padding: 44px 24px 70px;
     grid-template-columns: 1fr;
-    gap: 42px;
-  }
-
-  .menuIntro {
-    max-width: 520px;
+    gap: 54px;
   }
 
   .menuLinks a {
-    font-size: clamp(2rem, 11vw, 3.6rem);
+    font-size: clamp(2.15rem, 11vw, 3.7rem);
+  }
+
+  .featuredLinks a {
+    font-size: 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .desktopNav > a::after,
+  .practiceTrigger::after,
+  .practiceTrigger > span,
+  .practiceDropdown,
+  .dropdownLinks a,
   .menuButton,
   .menuButton span,
   .menuOverlay,
-  .menuLinks a {
+  .menuLinks a,
+  .featuredLinks a {
     transition: none;
   }
 }
