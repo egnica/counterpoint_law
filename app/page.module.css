@@ -249,10 +249,12 @@
 }
 
 .positioning {
+  position: relative;
   width: min(100%, 1380px);
   margin: 0 auto;
   padding: clamp(86px, 10vw, 150px) 5vw;
   display: grid;
+  overflow: hidden;
   grid-template-columns: minmax(300px, 0.9fr) minmax(420px, 1.1fr);
   gap: clamp(60px, 9vw, 130px);
 }
@@ -274,6 +276,12 @@
   letter-spacing: -0.055em;
   line-height: 0.98;
   text-wrap: balance;
+}
+
+.sectionIntro,
+.positioningCopy {
+  position: relative;
+  z-index: 1;
 }
 
 .positioningCopy {

@@ -1,0 +1,47 @@
+.mark {
+  position: absolute;
+  z-index: 0;
+  width: clamp(620px, 58vw, 940px);
+  aspect-ratio: 1;
+  right: clamp(-410px, -24vw, -230px);
+  top: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(44px, 5vw, 82px);
+  opacity: 0.055;
+  transform: rotate(0deg);
+  transform-origin: center;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.mark span {
+  display: block;
+  border-radius: 50%;
+  background: var(--cp-blue);
+}
+
+@media (max-width: 900px) {
+  .mark {
+    width: 760px;
+    right: -430px;
+    top: 46%;
+    opacity: 0.045;
+  }
+}
+
+@media (max-width: 620px) {
+  .mark {
+    width: 600px;
+    right: -390px;
+    top: 58%;
+    opacity: 0.04;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark {
+    transform: rotate(12deg) !important;
+    will-change: auto;
+  }
+}

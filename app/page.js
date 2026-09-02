@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactSection from "@/components/ContactSection/ContactSection";
 import ImageDivider from "@/components/ImageDivider/ImageDivider";
+import ScrollDotMark from "@/components/ScrollDotMark/ScrollDotMark";
 import { practiceAreas } from "@/lib/practiceAreas";
 import styles from "./page.module.css";
 
@@ -105,6 +106,8 @@ export default function Home() {
       </section>
 
       <section className={styles.positioning} id="counterpoint">
+        <ScrollDotMark />
+
         <div className={styles.sectionIntro}>
           <p className={styles.eyebrow}>Counterpoint Law</p>
           <h2>Legal strategy that keeps business, creativity and technology moving.</h2>
