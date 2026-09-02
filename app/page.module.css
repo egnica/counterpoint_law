@@ -32,6 +32,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(34px, 4vw, 66px);
+  transform: translateY(-50%) rotate(0deg) scale(1);
   transform-origin: center;
   animation: heroMarkIn 1100ms cubic-bezier(0.18, 0.72, 0.18, 1) both;
 }
@@ -324,6 +325,7 @@
 }
 
 .flatRates {
+  scroll-margin-top: 76px;
   min-height: 520px;
   position: relative;
   overflow: hidden;

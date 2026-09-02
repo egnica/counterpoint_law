@@ -209,7 +209,7 @@
   }
 
   .menuOverlay {
-    inset-top: 68px;
+    inset: 68px 0 0;
   }
 
   .menuInner {
