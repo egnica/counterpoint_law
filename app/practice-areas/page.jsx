@@ -1,10 +1,7 @@
-"use client";
-
-import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { practiceAreas } from "@/lib/practiceAreas";
+import PracticeAreasAccordion from "./PracticeAreasAccordion";
 import styles from "./PracticeAreasPage.module.css";
 
 const PRACTICE_AREA_BASE_PATH = "/practice-areas";
@@ -17,11 +14,31 @@ const isChildOf = (practiceArea, parentSlug) => {
   return practiceArea.parent === parentSlug;
 };
 
+const allPracticeAreas = Object.entries(practiceAreas)
+  .map(([slug, practiceArea]) => ({
+    slug,
+    title: practiceArea.title,
+    parent: practiceArea.parent,
+  }))
+  .sort((first, second) => first.title.localeCompare(second.title));
+
+const getChildren = (parentSlug) =>
+  Object.entries(practiceAreas)
+    .filter(([, practiceArea]) => isChildOf(practiceArea, parentSlug))
+    .map(([slug, practiceArea]) => ({
+      slug,
+      title: practiceArea.title,
+    }));
+
 const parentPracticeAreas = Object.entries(practiceAreas)
   .filter(([, practiceArea]) => practiceArea.parent === null)
   .map(([slug, practiceArea]) => ({
     slug,
-    ...practiceArea,
+    title: practiceArea.title,
+    summary: practiceArea.summary,
+    image: practiceArea.image,
+    homeOrder: practiceArea.homeOrder,
+    children: getChildren(slug),
   }))
   .sort(
     (first, second) => (first.homeOrder ?? 999) - (second.homeOrder ?? 999),
@@ -31,21 +48,6 @@ const accordionColumns = [
   parentPracticeAreas.filter((_, index) => index % 2 === 0),
   parentPracticeAreas.filter((_, index) => index % 2 !== 0),
 ];
-
-const allPracticeAreas = Object.entries(practiceAreas)
-  .map(([slug, practiceArea]) => ({
-    slug,
-    ...practiceArea,
-  }))
-  .sort((first, second) => first.title.localeCompare(second.title));
-
-const getChildren = (parentSlug) =>
-  Object.entries(practiceAreas)
-    .filter(([, practiceArea]) => isChildOf(practiceArea, parentSlug))
-    .map(([slug, practiceArea]) => ({
-      slug,
-      ...practiceArea,
-    }));
 
 const getPracticeAreaHref = (slug, practiceArea, navigationParent = null) => {
   let fromSlug = navigationParent;
@@ -67,104 +69,6 @@ const getPracticeAreaHref = (slug, practiceArea, navigationParent = null) => {
     },
   };
 };
-
-function AccordionGroup({ practiceArea }) {
-  const { slug, title, summary, image, homeOrder } = practiceArea;
-
-  const [isOpen, setIsOpen] = useState(false);
-  const children = getChildren(slug);
-
-  const buttonId = `practice-button-${slug}`;
-  const panelId = `practice-panel-${slug}`;
-
-  return (
-    <article
-      className={styles.practiceGroup}
-      style={{
-        "--practice-order": homeOrder ?? 999,
-      }}
-    >
-      <h2 className={styles.practiceHeading}>
-        <button
-          id={buttonId}
-          className={styles.practiceHeader}
-          type="button"
-          aria-expanded={isOpen}
-          aria-controls={panelId}
-          data-open={isOpen}
-          onClick={() => setIsOpen((current) => !current)}
-        >
-          <Image
-            className={styles.headerImage}
-            src={image?.src || "/images/placeholder.webp"}
-            alt=""
-            fill
-            sizes="(max-width: 760px) 100vw, 50vw"
-          />
-
-          <span className={styles.imageOverlay} aria-hidden="true" />
-
-          <span className={styles.practiceTitle}>{title}</span>
-
-          <span className={styles.toggleIcon} aria-hidden="true">
-            <span className={styles.horizontalLine} />
-            <span className={styles.verticalLine} />
-          </span>
-        </button>
-      </h2>
-
-      <div
-        id={panelId}
-        className={styles.practicePanel}
-        data-open={isOpen}
-        role="region"
-        aria-labelledby={buttonId}
-      >
-        <div className={styles.practicePanelInner}>
-          <div className={styles.practicePanelBody}>
-            <div className={styles.panelIntroduction}>
-              {summary ? <p>{summary}</p> : null}
-
-              <Link
-                className={styles.overviewLink}
-                href={`${PRACTICE_AREA_BASE_PATH}/${slug}`}
-              >
-                View {title} Overview
-                <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-
-            {children.length ? (
-              <ul className={styles.childList}>
-                {children.map((child) => (
-                  <li key={child.slug}>
-                    <Link href={getPracticeAreaHref(child.slug, child, slug)}>
-                      <span>{child.title}</span>
-
-                      <span className={styles.childArrow} aria-hidden="true">
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function AccordionColumn({ practiceAreas: columnPracticeAreas }) {
-  return (
-    <div className={styles.accordionColumn}>
-      {columnPracticeAreas.map((practiceArea) => (
-        <AccordionGroup key={practiceArea.slug} practiceArea={practiceArea} />
-      ))}
-    </div>
-  );
-}
 
 function PracticeAreaDirectory() {
   return (
@@ -247,14 +151,7 @@ export default function PracticeAreasPage() {
             Select a category to explore its services.
           </p>
 
-          <div className={styles.accordionGrid}>
-            {accordionColumns.map((columnPracticeAreas, index) => (
-              <AccordionColumn
-                key={`practice-column-${index}`}
-                practiceAreas={columnPracticeAreas}
-              />
-            ))}
-          </div>
+          <PracticeAreasAccordion columns={accordionColumns} />
         </div>
       </section>
 
