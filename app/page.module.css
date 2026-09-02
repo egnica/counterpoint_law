@@ -252,11 +252,12 @@
   position: relative;
   width: min(100%, 1380px);
   margin: 0 auto;
-  padding: clamp(86px, 10vw, 150px) 5vw;
+  padding: clamp(70px, 8vw, 110px) 5vw;
   display: grid;
   overflow: hidden;
-  grid-template-columns: minmax(300px, 0.9fr) minmax(420px, 1.1fr);
-  gap: clamp(60px, 9vw, 130px);
+  grid-template-columns: minmax(250px, 0.8fr) minmax(420px, 1.2fr);
+  gap: clamp(52px, 7vw, 100px);
+  align-items: center;
 }
 
 .eyebrow {
@@ -284,8 +285,21 @@
   z-index: 1;
 }
 
+.verticalHeadline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  line-height: 0.9;
+}
+
+.verticalHeadline span {
+  display: block;
+  white-space: nowrap;
+}
+
 .positioningCopy {
-  padding-top: 32px;
+  padding-top: 0;
 }
 
 .positioningCopy p {

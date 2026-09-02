@@ -120,7 +120,13 @@ export default function Home() {
 
         <div className={styles.sectionIntro}>
           <p className={styles.eyebrow}>Counterpoint Law</p>
-          <h2>Legal strategy that keeps business, creativity and technology moving.</h2>
+          <h2 className={styles.verticalHeadline}>
+            <span>Legal</span>
+            <span>strategy</span>
+            <span>keeps</span>
+            <span>business</span>
+            <span>moving.</span>
+          </h2>
         </div>
 
         <div className={styles.positioningCopy}>
