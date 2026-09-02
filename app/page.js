@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import ContactSection from "@/components/ContactSection/ContactSection";
 import ImageDivider from "@/components/ImageDivider/ImageDivider";
@@ -134,13 +135,24 @@ export default function Home() {
         </div>
       </section>
 
-      <ImageDivider />
-
       <section className={styles.needs}>
         <div className={styles.needsHeader}>
-          <p className={styles.eyebrow}>When legal questions become business questions</p>
-          <h2>Advice grounded in the situation you are actually trying to solve.</h2>
-          <p>
+          <div className={styles.needsHeadline}>
+            <p className={styles.eyebrow}>When legal questions become business questions</p>
+            <h2>Advice grounded in the situation you are actually trying to solve.</h2>
+          </div>
+
+          <div className={styles.needsImage}>
+            <Image
+              src="/images/placeholder.webp"
+              alt=""
+              fill
+              sizes="(max-width: 760px) 100vw, 50vw"
+              className={styles.needsImageAsset}
+            />
+          </div>
+
+          <p className={styles.needsIntro}>
             Legal needs rarely arrive as neat categories. They show up while a
             client is launching something, negotiating a deal, protecting valuable
             work, managing a relationship, or deciding how to respond when a
@@ -163,6 +175,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <ImageDivider />
 
       <section className={styles.flatRates} id="flat-rates">
         <div className={styles.flatRateMark} aria-hidden="true">
