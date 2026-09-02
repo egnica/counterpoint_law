@@ -1,142 +1,579 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
+  background: var(--cp-white);
+  color: var(--cp-ink);
+}
 
-  --text-primary: #000;
-  --text-secondary: #666;
+.hero {
+  position: relative;
+  min-height: clamp(400px, 52vh, 500px);
+  overflow: hidden;
+  background-image: url("https://nciholasegner.s3.us-east-2.amazonaws.com/counterpoint/hero-1-counterpoint.webp");
+  background-position: center right;
+  background-size: cover;
+  isolation: isolate;
+}
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
+.heroPanelVisual {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(68%, 1040px);
+  overflow: hidden;
+  background: rgba(10, 111, 157, 0.88);
+  clip-path: ellipse(96% 118% at 0% 50%);
+  z-index: 0;
+}
 
+.heroMark {
+  position: absolute;
+  width: clamp(420px, 42vw, 680px);
+  aspect-ratio: 1;
+  left: clamp(-90px, -2vw, -20px);
+  top: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(34px, 4vw, 66px);
+  transform-origin: center;
+  animation: heroMarkIn 1100ms cubic-bezier(0.18, 0.72, 0.18, 1) both;
+}
+
+.heroMark span {
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.115);
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  min-height: inherit;
+  width: min(100%, 1600px);
+  margin: 0 auto;
+  padding: clamp(52px, 7vw, 86px) 5vw;
   display: flex;
-  flex: 1;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
 }
 
-.main {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+.heroCopy {
+  width: min(48%, 720px);
+  color: white;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.heroCopy h1 {
+  font-size: clamp(3.6rem, 6vw, 6.35rem);
+  font-weight: 820;
+  letter-spacing: -0.065em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  animation: heroTextIn 650ms 120ms ease both;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
+.heroTagline {
+  max-width: 650px;
+  margin-top: 14px;
+  font-size: clamp(1.35rem, 2.35vw, 2.2rem);
+  font-weight: 760;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
   text-wrap: balance;
-  color: var(--text-primary);
+  animation: heroTextIn 650ms 210ms ease both;
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+.heroBody {
+  max-width: 610px;
+  margin-top: clamp(24px, 3vw, 38px);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-weight: 520;
+  line-height: 1.6;
+  animation: heroTextIn 650ms 300ms ease both;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
+.heroCta {
+  min-height: 54px;
   width: fit-content;
+  margin-top: 28px;
+  padding: 0 26px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cp-navy);
+  color: white;
+  font-weight: 780;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+  animation: heroTextIn 650ms 390ms ease both;
+}
+
+.heroCta:hover {
+  background: var(--cp-navy-deep);
+  transform: translateY(-2px);
+}
+
+.practiceCtas {
+  position: relative;
+  z-index: 4;
+  background: var(--cp-navy);
+}
+
+.practiceGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.practiceCard {
+  min-height: 152px;
+  position: relative;
+  padding: 22px 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  background-position: center;
+  background-size: cover;
+  color: white;
+  font-size: clamp(0.94rem, 1.25vw, 1.15rem);
+  font-weight: 770;
+  line-height: 1.15;
+  transition:
+    background-size 280ms ease,
+    filter 220ms ease;
+}
+
+.practiceCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 111, 157, 0);
+  transition: background-color 220ms ease;
+}
+
+.practiceCard > span {
+  position: relative;
+  z-index: 1;
+}
+
+.practiceCard:hover::before {
+  background: rgba(10, 111, 157, 0.34);
+}
+
+.practiceArrow {
+  font-size: 1.05rem;
   font-weight: 500;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
+.morePractices {
+  min-height: 54px;
+  padding: 0 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: var(--cp-blue);
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition: background-color 180ms ease;
+}
+
+.morePractices:hover {
+  background: var(--cp-blue-bright);
+}
+
+.positioning {
+  width: min(100%, 1380px);
+  margin: 0 auto;
+  padding: clamp(86px, 10vw, 150px) 5vw;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(420px, 1.1fr);
+  gap: clamp(60px, 9vw, 130px);
+}
+
+.eyebrow {
+  margin-bottom: 18px;
+  color: var(--cp-blue);
+  font-size: 0.76rem;
+  font-weight: 820;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.sectionIntro h2,
+.needsHeader h2 {
+  color: var(--cp-navy);
+  font-size: clamp(2.5rem, 4.4vw, 4.8rem);
+  font-weight: 760;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.positioningCopy {
+  padding-top: 32px;
+}
+
+.positioningCopy p {
+  max-width: 700px;
+  margin-bottom: 22px;
+  color: var(--cp-muted);
+  font-size: 1.05rem;
+  line-height: 1.78;
+}
+
+.textLink {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cp-blue);
+  font-weight: 780;
+}
+
+.textLink:hover {
+  color: var(--cp-navy);
+}
+
+.needs {
+  padding: clamp(86px, 10vw, 145px) 5vw;
+  background: var(--cp-blue-soft);
+}
+
+.needsHeader {
+  width: min(100%, 1280px);
+  margin: 0 auto 62px;
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(300px, 0.65fr);
+  column-gap: clamp(50px, 8vw, 110px);
+  align-items: end;
+}
+
+.needsHeader .eyebrow {
+  grid-column: 1 / -1;
+}
+
+.needsHeader > p:last-child {
+  color: var(--cp-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.needsGrid {
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid #cbdfe6;
+}
+
+.needCard {
+  min-height: 310px;
+  padding: 34px 36px 38px 0;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #cbdfe6;
+  color: var(--cp-ink);
+  transition:
+    padding-left 180ms ease,
+    background-color 180ms ease;
+}
+
+.needCard:nth-child(even) {
+  padding-left: 36px;
+  border-left: 1px solid #cbdfe6;
+}
+
+.needCard:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.needNumber {
+  margin-bottom: 50px;
+  color: var(--cp-blue);
+  font-size: 0.75rem;
+  font-weight: 820;
+  letter-spacing: 0.12em;
+}
+
+.needCard h3 {
+  max-width: 520px;
+  color: var(--cp-navy);
+  font-size: clamp(1.45rem, 2.1vw, 2.1rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.needCard p {
+  max-width: 570px;
+  margin-top: 18px;
+  color: var(--cp-muted);
+  line-height: 1.7;
+}
+
+.needLink {
+  margin-top: auto;
+  padding-top: 28px;
+  display: inline-flex;
   gap: 8px;
+  color: var(--cp-blue);
+  font-size: 0.88rem;
+  font-weight: 760;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.flatRates {
+  min-height: 520px;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(82px, 10vw, 140px) 5vw;
+  display: flex;
+  align-items: center;
+  background: var(--cp-navy);
+  color: white;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+.flatRateMark {
+  position: absolute;
+  width: clamp(380px, 45vw, 720px);
+  aspect-ratio: 1;
+  right: -7vw;
+  top: 50%;
+  transform: translateY(-50%) rotate(13deg);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(30px, 4vw, 62px);
+  opacity: 0.075;
+}
+
+.flatRateMark span {
+  border-radius: 50%;
+  background: white;
+}
+
+.flatRateCopy {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 760px);
+  margin-left: max(0px, calc((100vw - 1380px) / 2));
+}
+
+.flatRateEyebrow {
+  margin-bottom: 18px;
+  color: #8fd0ea;
+  font-size: 0.76rem;
+  font-weight: 820;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.flatRateCopy h2 {
+  max-width: 720px;
+  font-size: clamp(2.7rem, 5vw, 5.2rem);
+  font-weight: 760;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.flatRateCopy > p {
+  max-width: 690px;
+  margin-top: 28px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.flatRateCta {
+  margin-top: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #8fd0ea;
+  font-weight: 780;
+}
+
+.flatRateCta:hover {
+  color: white;
+}
+
+@keyframes heroMarkIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) rotate(-360deg) scale(0.58);
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  to {
+    opacity: 1;
+    transform: translateY(-50%) rotate(0deg) scale(1);
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
 
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media (max-width: 1050px) {
+  .heroPanelVisual {
+    width: 76%;
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  .heroCopy {
+    width: 58%;
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+  .practiceGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .practiceCard:nth-child(3) {
+    border-right: 0;
+  }
+
+  .practiceCard:nth-child(n + 4) {
+    min-height: 132px;
+  }
+
+  .practiceCard:nth-child(4) {
+    grid-column: span 2;
+  }
+
+  .positioning {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .positioningCopy {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 610px;
+    background-position: 66% center;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 17, 55, 0.18);
+    z-index: -1;
+  }
+
+  .heroPanelVisual {
+    width: 105%;
+    clip-path: ellipse(105% 94% at 0% 38%);
+  }
+
+  .heroInner {
+    padding: 54px 22px 70px;
+    align-items: flex-start;
+  }
+
+  .heroCopy {
+    width: min(100%, 590px);
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(3.25rem, 16vw, 5.2rem);
+  }
+
+  .heroTagline {
+    max-width: 520px;
+  }
+
+  .heroBody {
+    max-width: 500px;
+  }
+
+  .heroMark {
+    width: 560px;
+    left: -170px;
+    top: 39%;
+    gap: 44px;
+  }
+
+  .practiceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .practiceCard,
+  .practiceCard:nth-child(n + 4),
+  .practiceCard:nth-child(4) {
+    min-height: 112px;
+    grid-column: auto;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .positioning,
+  .needs {
+    padding-inline: 22px;
+  }
+
+  .needsHeader {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .needsHeader .eyebrow {
+    grid-column: auto;
+  }
+
+  .needsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .needCard,
+  .needCard:nth-child(even) {
+    min-height: 270px;
+    padding: 30px 0;
+    border-left: 0;
+  }
+
+  .needNumber {
+    margin-bottom: 34px;
+  }
+
+  .flatRates {
+    min-height: auto;
+    padding: 84px 22px;
+  }
+
+  .flatRateCopy {
+    margin-left: 0;
+  }
+
+  .flatRateMark {
+    width: 560px;
+    right: -300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroMark,
+  .heroCopy h1,
+  .heroTagline,
+  .heroBody,
+  .heroCta {
+    animation: none;
+  }
+
+  .heroCta,
+  .practiceCard,
+  .practiceCard::before,
+  .morePractices,
+  .needCard {
+    transition: none;
   }
 }
