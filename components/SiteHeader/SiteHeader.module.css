@@ -238,8 +238,11 @@
 }
 
 .menuOverlay {
-  position: fixed;
-  inset: 76px 0 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: calc(100dvh - 76px);
   z-index: 90;
   background: var(--cp-navy-deep);
   color: white;
@@ -260,7 +263,7 @@
 }
 
 .menuInner {
-  min-height: calc(100vh - 76px);
+  min-height: 100%;
   width: min(100%, 1500px);
   margin: 0 auto;
   padding: clamp(54px, 7vw, 102px) 6vw 80px;
@@ -390,11 +393,11 @@
   }
 
   .menuOverlay {
-    inset: 68px 0 0;
+    height: calc(100dvh - 68px);
   }
 
   .menuInner {
-    min-height: calc(100vh - 68px);
+    min-height: 100%;
     padding: 44px 24px 70px;
     grid-template-columns: 1fr;
     gap: 54px;
