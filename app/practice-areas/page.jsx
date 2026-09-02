@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import ContactSection from "@/components/ContactSection/ContactSection";
 import { practiceAreas } from "@/lib/practiceAreas";
 import PracticeAreasAccordion from "./PracticeAreasAccordion";
 import styles from "./PracticeAreasPage.module.css";
@@ -108,27 +109,6 @@ function PracticeAreaDirectory() {
   );
 }
 
-function ContactCallout() {
-  return (
-    <section className={styles.contactCallout}>
-      <div className={styles.contactCalloutInner}>
-        <p className={styles.eyebrow}>Start a Conversation</p>
-
-        <h2>Let’s Discuss Your Legal Needs</h2>
-
-        <p>
-          Contact Counterpoint Law to discuss your business, technology,
-          entertainment, intellectual property, or dispute-resolution matter.
-        </p>
-
-        <Link className={styles.contactButton} href="/contact">
-          Schedule a Consultation
-        </Link>
-      </div>
-    </section>
-  );
-}
-
 export default function PracticeAreasPage() {
   return (
     <main className={styles.page}>
@@ -157,7 +137,7 @@ export default function PracticeAreasPage() {
 
       <PracticeAreaDirectory />
 
-      <ContactCallout />
+      <ContactSection />
     </main>
   );
 }

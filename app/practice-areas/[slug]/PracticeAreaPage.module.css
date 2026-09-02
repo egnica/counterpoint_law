@@ -1,45 +1,85 @@
 .page {
-  --paper: #f7f4ee;
-  --paper-deep: #ebe5da;
-  --ink: #171918;
-  --muted: #625f59;
-  --line: rgba(23, 25, 24, 0.16);
-  --accent: #8a6743;
-  --accent-light: #d5b48d;
-  --dark: #171918;
-  background: #fff;
-  color: var(--ink);
+  background: var(--cp-white);
+  color: var(--cp-ink);
 }
 
+/* Practice-area hero */
+
 .hero {
-  background: var(--paper);
+  position: relative;
+  min-height: clamp(500px, 62vh, 680px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: var(--cp-navy-deep);
+  isolation: isolate;
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  min-height: 0;
   overflow: hidden;
 }
 
-.heroInner {
+.heroShade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 11, 31, 0.94) 0%,
+      rgba(7, 20, 57, 0.86) 38%,
+      rgba(7, 20, 57, 0.53) 60%,
+      rgba(7, 20, 57, 0.14) 82%,
+      rgba(7, 20, 57, 0.04) 100%
+    );
+}
+
+.heroMark {
+  position: absolute;
+  z-index: -1;
+  width: clamp(430px, 44vw, 690px);
+  aspect-ratio: 1;
+  left: clamp(-130px, -4vw, -42px);
+  top: 50%;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
-  min-height: min(760px, calc(100vh - 80px));
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(34px, 4vw, 60px);
+  transform: translateY(-50%) rotate(0deg) scale(1);
+  transform-origin: center;
+  animation: heroMarkIn 1000ms cubic-bezier(0.18, 0.72, 0.18, 1) both;
+  pointer-events: none;
+}
+
+.heroMark span {
+  border-radius: 50%;
+  background: rgba(22, 135, 183, 0.24);
+}
+
+.heroInner {
+  width: min(100%, 1600px);
   margin: 0 auto;
-  max-width: 1600px;
+  padding: clamp(4.5rem, 7vw, 7rem) 5vw;
 }
 
 .heroCopy {
-  align-self: center;
-  padding: clamp(4.5rem, 9vw, 9rem) clamp(2rem, 7vw, 7rem);
+  width: min(56%, 780px);
+  color: white;
 }
 
 .backLink {
-  align-items: center;
-  color: #828282;
-  display: inline-flex;
-  font-size: 0.78rem;
-  font-weight: 700;
-  gap: 0.7rem;
-  letter-spacing: 0.08em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
   padding: 0.35rem 0;
-  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #8fd0ea;
+  font-size: 0.76rem;
+  font-weight: 780;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -53,95 +93,78 @@
 }
 
 .breadcrumb {
-  align-items: center;
-  color: var(--muted);
+  margin-bottom: 1.2rem;
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.78rem;
+  align-items: center;
   gap: 0.65rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.72rem;
+  font-weight: 660;
   letter-spacing: 0.06em;
-  margin-bottom: 2rem;
   text-transform: uppercase;
 }
 
 .breadcrumb a {
   color: inherit;
-  text-decoration: none;
 }
 
 .breadcrumb a:hover {
-  color: var(--ink);
+  color: white;
 }
 
 .eyebrow {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 700;
+  margin: 0 0 1.1rem;
+  color: var(--cp-blue);
+  font-size: 0.76rem;
+  font-weight: 820;
   letter-spacing: 0.16em;
-  margin: 0 0 1.25rem;
   text-transform: uppercase;
+}
+
+.hero .eyebrow {
+  color: #8fd0ea;
 }
 
 .hero h1 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.2rem, 6.2vw, 6.7rem);
-  font-weight: 400;
-  letter-spacing: -0.055em;
-  line-height: 0.92;
+  max-width: 800px;
   margin: 0;
-  max-width: 760px;
+  color: white;
+  font-size: clamp(3.2rem, 6vw, 6.4rem);
+  font-weight: 790;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+  text-wrap: balance;
 }
 
 .heroSummary {
-  color: var(--muted);
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  max-width: 680px;
+  margin: 1.8rem 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1.04rem, 1.45vw, 1.24rem);
   line-height: 1.7;
-  margin: 2rem 0 0;
-  max-width: 620px;
-}
-
-.primaryButton,
-.lightButton {
-  align-items: center;
-  display: inline-flex;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  letter-spacing: 0.08em;
-  min-height: 52px;
-  padding: 0.9rem 1.45rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
 }
 
 .primaryButton {
-  background: var(--ink);
-  color: #fff;
-  margin-top: 2.25rem;
-}
-
-.primaryButton:hover,
-.lightButton:hover {
-  transform: translateY(-2px);
+  min-height: 52px;
+  margin-top: 2rem;
+  padding: 0.9rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--cp-blue-bright);
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 780;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
 }
 
 .primaryButton:hover {
-  background: var(--accent);
-}
-
-.heroImage,
-.sectionImage {
-  min-height: 420px;
-  overflow: hidden;
-  position: relative;
-}
-
-.heroImage {
-  min-height: 620px;
+  background: var(--cp-blue);
+  transform: translateY(-2px);
 }
 
 .coverImage {
@@ -149,26 +172,35 @@
   transition: transform 700ms ease;
 }
 
-.heroImage:hover .coverImage,
+.sectionImage {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--cp-blue-pale);
+}
+
 .sectionImage:hover .coverImage {
   transform: scale(1.02);
 }
 
+/* Standard content sections */
+
 .standardSection {
-  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem);
 }
 
 .sectionInner,
 .constrainedSection {
+  width: min(100%, 1240px);
   margin: 0 auto;
-  max-width: 1240px;
 }
 
 .sectionInner {
-  align-items: center;
   display: grid;
-  gap: clamp(3rem, 7vw, 7rem);
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+  align-items: center;
+  gap: clamp(3rem, 7vw, 7rem);
 }
 
 .reverseSection .sectionCopy {
@@ -190,64 +222,66 @@
 .sectionCopy h2,
 .sectionHeading h2,
 .stepsIntroduction h2,
-.practiceLinksHeading h2,
-.contactCallout h2 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.25rem, 4.2vw, 4.5rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1.04;
-  margin: 0 0 1.75rem;
+.practiceLinksHeading h2 {
+  margin: 0 0 1.6rem;
+  color: var(--cp-navy);
+  font-size: clamp(2.25rem, 4vw, 4.25rem);
+  font-weight: 760;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  text-wrap: balance;
 }
 
 .sectionCopy p,
 .sectionHeading p,
 .stepsBody p,
-.practiceLinksIntro p,
-.contactCallout p {
-  color: var(--muted);
+.practiceLinksIntro p {
+  margin: 0 0 1.15rem;
+  color: var(--cp-muted);
   font-size: 1.05rem;
   line-height: 1.8;
-  margin: 0 0 1.15rem;
 }
 
 .textLink {
-  align-items: center;
-  border-bottom: 1px solid currentColor;
-  color: var(--ink);
-  display: inline-flex;
-  font-size: 0.85rem;
-  font-weight: 700;
-  gap: 0.75rem;
-  letter-spacing: 0.08em;
   margin-top: 1.25rem;
   padding-bottom: 0.3rem;
-  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid currentColor;
+  color: var(--cp-blue);
+  font-size: 0.84rem;
+  font-weight: 780;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .darkSection {
-  background: var(--dark);
-  color: #fff;
+  background: var(--cp-navy-deep);
+  color: white;
+}
+
+.darkSection .sectionCopy h2 {
+  color: white;
 }
 
 .darkSection .sectionCopy p,
 .darkSection .textLink {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.74);
 }
 
 .practiceLinksSection {
-  background: var(--paper);
-  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem);
+  background: var(--cp-blue-pale);
 }
 
 .practiceLinksHeading,
 .stepsIntroduction {
-  align-items: end;
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.65fr);
   margin-bottom: clamp(3rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.65fr);
+  align-items: end;
+  gap: 3rem;
 }
 
 .practiceLinksHeading h2,
@@ -261,22 +295,21 @@
 }
 
 .practiceGrid {
-  border-left: 1px solid var(--line);
-  border-top: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--cp-line);
+  border-left: 1px solid var(--cp-line);
 }
 
 .practiceCard {
-  background: transparent;
-  border-bottom: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
   min-height: 240px;
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--cp-line);
+  border-bottom: 1px solid var(--cp-line);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--cp-navy);
   transition:
     background-color 180ms ease,
     color 180ms ease,
@@ -284,42 +317,48 @@
 }
 
 .practiceCard:hover {
-  background: var(--ink);
-  color: #fff;
+  background: var(--cp-navy);
+  color: white;
   transform: translateY(-3px);
 }
 
 .cardTitle {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
-  line-height: 1.18;
+  font-size: clamp(1.3rem, 1.9vw, 1.75rem);
+  font-weight: 740;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
 }
 
 .cardSummary {
-  color: var(--muted);
+  margin-top: 1rem;
+  color: var(--cp-muted);
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-top: 1rem;
 }
 
 .practiceCard:hover .cardSummary {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .cardLink {
-  align-items: center;
-  display: flex;
-  font-size: 0.75rem;
-  font-weight: 700;
-  gap: 0.6rem;
-  letter-spacing: 0.1em;
   margin-top: auto;
   padding-top: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--cp-blue);
+  font-size: 0.75rem;
+  font-weight: 780;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
+.practiceCard:hover .cardLink {
+  color: #8fd0ea;
+}
+
 .listSection {
-  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem);
 }
 
 .sectionHeading {
@@ -327,147 +366,132 @@
 }
 
 .listLayout {
-  align-items: start;
-  display: grid;
-  gap: clamp(3rem, 7vw, 7rem);
-  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
   margin-top: clamp(3rem, 6vw, 5.5rem);
+  display: grid;
+  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
+  align-items: start;
+  gap: clamp(3rem, 7vw, 7rem);
 }
 
 .featureList {
-  border-top: 1px solid var(--line);
-  list-style: none;
   margin: 0;
   padding: 0;
+  border-top: 1px solid var(--cp-line);
+  list-style: none;
 }
 
 .featureList li {
-  align-items: start;
-  border-bottom: 1px solid var(--line);
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 42px minmax(0, 1fr);
   padding: 1.7rem 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: start;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--cp-line);
 }
 
 .listNumber {
-  color: var(--accent);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1rem;
+  color: var(--cp-blue);
+  font-size: 0.78rem;
+  font-weight: 820;
+  letter-spacing: 0.08em;
 }
 
 .featureList strong {
   display: block;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.35rem;
-  font-weight: 400;
   margin-bottom: 0.55rem;
+  color: var(--cp-navy);
+  font-size: 1.28rem;
+  font-weight: 720;
+  letter-spacing: -0.025em;
 }
 
 .featureList p {
-  color: var(--muted);
-  line-height: 1.7;
   margin: 0;
+  color: var(--cp-muted);
+  line-height: 1.7;
 }
 
 .stepsSection {
-  background: var(--dark);
-  color: #fff;
-  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem);
+  background: var(--cp-navy);
+  color: white;
 }
 
 .stepsSection .eyebrow {
-  color: var(--accent-light);
+  color: #8fd0ea;
+}
+
+.stepsIntroduction h2 {
+  color: white;
 }
 
 .stepsBody p {
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .stepsGrid {
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  list-style: none;
 }
 
 .stepsGrid li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
   min-height: 280px;
   padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .stepNumber {
-  color: var(--accent-light);
   display: block;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 2.4rem;
   margin-bottom: 3.75rem;
+  color: #8fd0ea;
+  font-size: 1.9rem;
+  font-weight: 760;
 }
 
 .stepsGrid h3 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.45rem;
-  font-weight: 400;
-  line-height: 1.2;
   margin: 0 0 1rem;
+  font-size: 1.4rem;
+  font-weight: 720;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 .stepsGrid p {
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.65;
   margin: 0;
-}
-
-.contactCallout {
-  background: var(--paper-deep);
-  padding: clamp(5rem, 9vw, 9rem) 1.25rem;
-  text-align: center;
-}
-
-.contactCalloutInner {
-  margin: 0 auto;
-  max-width: 800px;
-}
-
-.contactCallout p {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 650px;
-}
-
-.lightButton {
-  background: var(--ink);
-  color: #fff;
-  margin-top: 1.25rem;
-}
-
-.lightButton:hover {
-  background: var(--accent);
+  color: rgba(255, 255, 255, 0.67);
+  line-height: 1.65;
 }
 
 .primaryButton:focus-visible,
-.lightButton:focus-visible,
 .practiceCard:focus-visible,
 .textLink:focus-visible,
 .backLink:focus-visible,
 .breadcrumb a:focus-visible {
-  outline: 3px solid var(--accent-light);
+  outline: 3px solid #8fd0ea;
   outline-offset: 4px;
 }
 
-@media (max-width: 1050px) {
-  .heroInner {
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.85fr);
+@keyframes heroMarkIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) rotate(-360deg) scale(0.62);
   }
 
+  to {
+    opacity: 1;
+    transform: translateY(-50%) rotate(0deg) scale(1);
+  }
+}
+
+@media (max-width: 1050px) {
   .heroCopy {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    width: min(68%, 760px);
   }
 
   .practiceGrid {
@@ -480,29 +504,44 @@
 }
 
 @media (max-width: 800px) {
-  .heroInner,
+  .hero {
+    min-height: 590px;
+  }
+
+  .heroShade {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 11, 31, 0.88) 0%,
+        rgba(7, 20, 57, 0.8) 58%,
+        rgba(7, 20, 57, 0.72) 100%
+      );
+  }
+
+  .heroInner {
+    padding: 3.6rem 22px 4.5rem;
+  }
+
+  .heroCopy {
+    width: min(100%, 680px);
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 13vw, 4.8rem);
+  }
+
+  .heroMark {
+    width: 520px;
+    left: -190px;
+    top: 54%;
+    gap: 42px;
+  }
+
   .sectionInner,
   .practiceLinksHeading,
   .stepsIntroduction,
   .listLayout {
     grid-template-columns: 1fr;
-  }
-
-  .heroInner {
-    min-height: auto;
-  }
-
-  .heroCopy {
-    padding: 4rem 1.25rem;
-  }
-
-  .breadcrumb {
-    margin-bottom: 3rem;
-  }
-
-  .heroImage {
-    min-height: 62vw;
-    order: 2;
   }
 
   .sectionImage {
@@ -530,14 +569,37 @@
 }
 
 @media (max-width: 560px) {
+  .hero {
+    min-height: 620px;
+  }
+
+  .breadcrumb {
+    font-size: 0.67rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 14vw, 4.2rem);
+  }
+
+  .heroSummary {
+    font-size: 1rem;
+  }
+
+  .heroMark {
+    width: 460px;
+    left: -210px;
+    top: 58%;
+    opacity: 0.85;
+  }
+
   .stepsGrid {
-    border-left: 0;
     grid-template-columns: 1fr;
+    border-left: 0;
   }
 
   .stepsGrid li {
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
     min-height: auto;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .stepNumber {
@@ -548,9 +610,13 @@
 @media (prefers-reduced-motion: reduce) {
   .coverImage,
   .primaryButton,
-  .lightButton,
   .practiceCard,
   .backLink span:first-child {
     transition: none;
+  }
+
+  .heroMark {
+    animation: none;
+    transform: translateY(-50%) rotate(12deg);
   }
 }

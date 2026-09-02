@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import ContactSection from "@/components/ContactSection/ContactSection";
 import { practiceAreas } from "@/lib/practiceAreas";
 import styles from "./PracticeAreaPage.module.css";
 
@@ -270,6 +271,28 @@ function PracticeAreaHero({ navigationParent, practiceArea }) {
 
   return (
     <header className={styles.hero}>
+      {hasImage(practiceArea.image) ? (
+        <div className={styles.heroImage} aria-hidden="true">
+          <Image
+            src={practiceArea.image.src}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className={styles.coverImage}
+          />
+        </div>
+      ) : null}
+
+      <div className={styles.heroShade} aria-hidden="true" />
+
+      <div className={styles.heroMark} aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+
       <div className={styles.heroInner}>
         <div className={styles.heroCopy}>
           <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
@@ -278,7 +301,6 @@ function PracticeAreaHero({ navigationParent, practiceArea }) {
             {navigationParent ? (
               <>
                 <span aria-hidden="true">/</span>
-
                 <Link
                   href={`${PRACTICE_AREA_BASE_PATH}/${navigationParent.slug}`}
                 >
@@ -290,11 +312,12 @@ function PracticeAreaHero({ navigationParent, practiceArea }) {
             <span aria-hidden="true">/</span>
             <span aria-current="page">{practiceArea.title}</span>
           </nav>
+
           <Link className={styles.backLink} href={backHref}>
             <span aria-hidden="true">←</span>
             <span>{backLabel}</span>
           </Link>
-          <br />
+
           <p className={styles.eyebrow}>Counterpoint Law</p>
           <h1>{practiceArea.title}</h1>
 
@@ -302,45 +325,12 @@ function PracticeAreaHero({ navigationParent, practiceArea }) {
             <p className={styles.heroSummary}>{practiceArea.summary}</p>
           ) : null}
 
-          <Link className={styles.primaryButton} href="/contact">
-            Schedule a Consultation
+          <Link className={styles.primaryButton} href="/#contact">
+            Contact Counterpoint
           </Link>
         </div>
-
-        {hasImage(practiceArea.image) ? (
-          <div className={styles.heroImage}>
-            <Image
-              src={practiceArea.image.src}
-              alt={practiceArea.image.alt || ""}
-              fill
-              priority
-              sizes="(max-width: 800px) 100vw, 52vw"
-              className={styles.coverImage}
-            />
-          </div>
-        ) : null}
       </div>
     </header>
-  );
-}
-
-function ContactCallout() {
-  return (
-    <section className={styles.contactCallout}>
-      <div className={styles.contactCalloutInner}>
-        <p className={styles.eyebrow}>Start a Conversation</p>
-        <h2>Let’s Discuss Your Business</h2>
-
-        <p>
-          Schedule a consultation to discuss your legal needs, business
-          objectives, and the next steps available to you.
-        </p>
-
-        <Link className={styles.lightButton} href="/contact">
-          Schedule a Consultation
-        </Link>
-      </div>
-    </section>
   );
 }
 
@@ -375,7 +365,7 @@ export default async function PracticeAreaPage({ params, searchParams }) {
         />
       ))}
 
-      <ContactCallout />
+      <ContactSection />
     </main>
   );
 }
