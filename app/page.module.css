@@ -654,6 +654,20 @@
     padding-inline: 22px;
   }
 
+  .sectionIntro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sectionIntro .eyebrow {
+    text-align: center;
+  }
+
+  .verticalHeadline {
+    margin-inline: auto;
+  }
+
   .needsHeader {
     grid-template-columns: 1fr;
     gap: 28px;
