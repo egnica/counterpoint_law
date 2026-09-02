@@ -19,8 +19,8 @@
 
 .imageLayer {
   position: absolute;
-  inset: -58px 0;
-  transform: translate3d(0, 0, 0) scale(1.12);
+  inset: -130px 0;
+  transform: translate3d(0, 0, 0) scale(1.18);
   will-change: transform;
 }
 
