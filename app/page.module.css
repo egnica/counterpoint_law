@@ -97,7 +97,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--cp-navy);
+  background: var(--cp-blue-bright);
   color: white;
   font-weight: 780;
   transition:
@@ -107,7 +107,7 @@
 }
 
 .heroCta:hover {
-  background: var(--cp-navy-deep);
+  background: var(--cp-blue);
   transform: translateY(-2px);
 }
 
@@ -352,6 +352,7 @@
 .needsHeadline h2 {
   margin-inline: auto;
   max-width: 650px;
+  font-size: clamp(2.15rem, 3.8vw, 4.1rem);
 }
 
 .needsImage {
