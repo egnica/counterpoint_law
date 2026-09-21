@@ -7,6 +7,10 @@ const nextConfig = {
         hostname: "placehold.co",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "nciholasegner.s3.us-east-2.amazonaws.com",
+      },
     ],
   },
 };
