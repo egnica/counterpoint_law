@@ -153,7 +153,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.needs}>
+      <section
+        className={styles.needs}
+        style={{ paddingBottom: "clamp(42px, 4vw, 64px)" }}
+      >
         <div className={styles.needsHeader}>
           <div className={styles.needsHeadline}>
             <p className={styles.eyebrow}>
@@ -184,7 +187,16 @@ export default function Home() {
 
         <div className={styles.needsGrid}>
           {clientNeeds.map((need, index) => (
-            <Link key={need.title} href={need.href} className={styles.needCard}>
+            <Link
+              key={need.title}
+              href={need.href}
+              className={styles.needCard}
+              style={
+                index === clientNeeds.length - 1
+                  ? { borderBottom: "none" }
+                  : undefined
+              }
+            >
               <span className={styles.needNumber}>
                 {String(index + 1).padStart(2, "0")}
               </span>
