@@ -324,7 +324,7 @@
 }
 
 .needs {
-  padding: clamp(86px, 10vw, 145px) 5vw;
+  padding: clamp(86px, 10vw, 145px) 5vw clamp(42px, 5vw, 64px);
   background: var(--cp-blue-soft);
 }
 
@@ -390,15 +390,16 @@
   width: min(100%, 1280px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   border-top: 1px solid #cbdfe6;
 }
 
 .needCard {
-  min-height: 310px;
-  padding: 34px 36px 38px 0;
+  min-height: 330px;
+  padding: 34px 28px 38px;
   display: flex;
   flex-direction: column;
+  grid-column: span 2;
   border-bottom: 1px solid #cbdfe6;
   color: var(--cp-ink);
   transition:
@@ -406,9 +407,33 @@
     background-color 180ms ease;
 }
 
-.needCard:nth-child(even) {
-  padding-left: 36px;
+.needCard:nth-child(1) {
+  grid-column: 1 / span 2;
+  padding-left: 0;
+}
+
+.needCard:nth-child(2) {
+  grid-column: 3 / span 2;
   border-left: 1px solid #cbdfe6;
+}
+
+.needCard:nth-child(3) {
+  grid-column: 5 / span 2;
+  border-left: 1px solid #cbdfe6;
+  padding-right: 0;
+}
+
+.needCard:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.needCard:nth-child(5) {
+  grid-column: 4 / span 2;
+  border-left: 1px solid #cbdfe6;
+}
+
+.needCard:nth-child(n + 4) {
+  border-bottom: 0;
 }
 
 .needCard:hover {
@@ -576,6 +601,35 @@
   .positioningCopy {
     padding-top: 0;
   }
+
+  .needsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .needCard:nth-child(1),
+  .needCard:nth-child(3) {
+    grid-column: 1 / span 2;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .needCard:nth-child(2),
+  .needCard:nth-child(4) {
+    grid-column: 3 / span 2;
+    padding-right: 0;
+    border-left: 1px solid #cbdfe6;
+  }
+
+  .needCard:nth-child(5) {
+    grid-column: 2 / span 2;
+    border-left: 0;
+    padding-inline: 28px;
+  }
+
+  .needCard:nth-child(3),
+  .needCard:nth-child(4) {
+    border-bottom: 1px solid #cbdfe6;
+  }
 }
 
 @media (max-width: 760px) {
@@ -692,10 +746,20 @@
   }
 
   .needCard,
-  .needCard:nth-child(even) {
+  .needCard:nth-child(1),
+  .needCard:nth-child(2),
+  .needCard:nth-child(3),
+  .needCard:nth-child(4),
+  .needCard:nth-child(5) {
     min-height: 270px;
+    grid-column: auto;
     padding: 30px 0;
     border-left: 0;
+    border-bottom: 1px solid #cbdfe6;
+  }
+
+  .needCard:last-child {
+    border-bottom: 0;
   }
 
   .needNumber {
