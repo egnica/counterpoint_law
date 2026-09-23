@@ -19,7 +19,7 @@
 
 .imageLayer {
   position: absolute;
-  inset: -300px 0;
+  inset: -430px 0;
   transform: translate3d(0, 0, 0) scale(1);
   will-change: transform;
 }
