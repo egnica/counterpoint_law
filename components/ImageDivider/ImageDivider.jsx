@@ -75,6 +75,9 @@ export default function ImageDivider({
           className={styles.image}
         />
       </div>
+      <div className={styles.wordmark} aria-hidden="true">
+        COUNTERPOINT
+      </div>
     </div>
   );
 }
