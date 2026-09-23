@@ -27,7 +27,7 @@
   position: absolute;
   width: clamp(420px, 42vw, 680px);
   aspect-ratio: 1;
-  left: clamp(-90px, -2vw, -20px);
+  right: clamp(-90px, -2vw, -20px);
   top: 50%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -620,7 +620,7 @@
 
   .heroMark {
     width: 560px;
-    left: -170px;
+    right: -170px;
     top: 39%;
     gap: 44px;
   }
