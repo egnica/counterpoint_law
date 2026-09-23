@@ -39,9 +39,9 @@ export default function ImageDivider({
         -1,
         Math.min(1, (frameCenter - viewportCenter) / travelRange),
       );
-      const offset = normalized * -105;
+      const offset = normalized * -240;
 
-      imageLayer.style.transform = `translate3d(0, ${offset}px, 0) scale(1.18)`;
+      imageLayer.style.transform = `translate3d(0, ${offset}px, 0) scale(1)`;
     }
 
     function handleScroll() {
