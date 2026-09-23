@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import styles from "./ImageDivider.module.css";
 
 export default function ImageDivider({
-  src = "/images/placeholder.webp",
+  src = "https://nciholasegner.s3.us-east-2.amazonaws.com/counterpoint/circle-1.webp",
   alt = "",
 }) {
   const frameRef = useRef(null);
@@ -17,9 +17,7 @@ export default function ImageDivider({
 
     if (!frame || !imageLayer) return undefined;
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const compactScreen = window.matchMedia("(max-width: 760px)");
 
     if (reducedMotion.matches || compactScreen.matches) return undefined;
@@ -39,7 +37,7 @@ export default function ImageDivider({
       const travelRange = viewportCenter + rect.height / 2;
       const normalized = Math.max(
         -1,
-        Math.min(1, (frameCenter - viewportCenter) / travelRange)
+        Math.min(1, (frameCenter - viewportCenter) / travelRange),
       );
       const offset = normalized * -105;
 
@@ -63,7 +61,11 @@ export default function ImageDivider({
   }, []);
 
   return (
-    <div className={styles.frame} ref={frameRef} aria-hidden={alt ? undefined : true}>
+    <div
+      className={styles.frame}
+      ref={frameRef}
+      aria-hidden={alt ? undefined : true}
+    >
       <div className={styles.imageLayer} ref={imageLayerRef}>
         <Image
           src={src}

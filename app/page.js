@@ -20,32 +20,27 @@ const featuredPractices = Object.entries(practiceAreas)
 const clientNeeds = [
   {
     title: "Launching, structuring, or changing a business",
-    body:
-      "From formation and ownership arrangements to commercial contracts and major transactions, clear legal foundations help a business make decisions with fewer surprises.",
+    body: "From formation and ownership arrangements to commercial contracts and major transactions, clear legal foundations help a business make decisions with fewer surprises.",
     href: "/practice-areas/business-corporate",
   },
   {
     title: "Negotiating technology and digital agreements",
-    body:
-      "Software, platforms, data, vendors, licensing, and emerging tools create practical questions about ownership, access, performance, responsibility, and risk.",
+    body: "Software, platforms, data, vendors, licensing, and emerging tools create practical questions about ownership, access, performance, responsibility, and risk.",
     href: "/practice-areas/technology",
   },
   {
     title: "Building an entertainment or music deal",
-    body:
-      "Creative projects often depend on agreements covering contributions, rights, compensation, licensing, production, distribution, sponsorships, and long-term control.",
+    body: "Creative projects often depend on agreements covering contributions, rights, compensation, licensing, production, distribution, sponsorships, and long-term control.",
     href: "/practice-areas/entertainment-music",
   },
   {
     title: "Protecting creative work, trademarks, and brands",
-    body:
-      "Copyright, trademark, licensing, confidentiality, advertising, and brand-rights planning can help protect valuable assets while preserving room for commercial opportunity.",
+    body: "Copyright, trademark, licensing, confidentiality, advertising, and brand-rights planning can help protect valuable assets while preserving room for commercial opportunity.",
     href: "/practice-areas/copyright-trademark-brand-protection",
   },
   {
     title: "Resolving a contract, ownership, or IP dispute",
-    body:
-      "Early analysis, strategic communication, negotiation, and carefully documented settlement terms can help clients pursue a useful resolution without losing sight of the business at stake.",
+    body: "Early analysis, strategic communication, negotiation, and carefully documented settlement terms can help clients pursue a useful resolution without losing sight of the business at stake.",
     href: "/practice-areas/dispute-resolution",
   },
 ];
@@ -90,7 +85,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.practiceCtas} aria-label="Featured practice areas">
+      <section
+        className={styles.practiceCtas}
+        aria-label="Featured practice areas"
+      >
         <div className={styles.practiceGrid}>
           {featuredPractices.map((practice) => (
             <Link
@@ -133,20 +131,21 @@ export default function Home() {
           <p>
             Counterpoint Law works with entrepreneurs, business owners,
             technology companies, creators, artists, producers, and other
-            professionals whose legal questions are closely connected to the work
-            they are building.
+            professionals whose legal questions are closely connected to the
+            work they are building.
           </p>
           <p>
-            The firm advises on the agreements, ownership decisions, intellectual
-            property, transactions, and conflicts that can shape a company,
-            creative project, product, or professional relationship. The goal is
-            to identify what matters, explain the tradeoffs clearly, and develop a
-            practical path forward.
+            The firm advises on the agreements, ownership decisions,
+            intellectual property, transactions, and conflicts that can shape a
+            company, creative project, product, or professional relationship.
+            The goal is to identify what matters, explain the tradeoffs clearly,
+            and develop a practical path forward.
           </p>
           <p>
             Vincent Peppe brings a business-minded approach to legal counsel,
             helping clients protect important interests without losing sight of
-            the opportunity, relationship, or larger objective behind the matter.
+            the opportunity, relationship, or larger objective behind the
+            matter.
           </p>
           <Link href="/vincent-peppe" className={styles.textLink}>
             Meet Vincent Peppe <span aria-hidden="true">→</span>
@@ -157,13 +156,17 @@ export default function Home() {
       <section className={styles.needs}>
         <div className={styles.needsHeader}>
           <div className={styles.needsHeadline}>
-            <p className={styles.eyebrow}>When legal questions become business questions</p>
-            <h2>Advice grounded in the situation you are actually trying to solve.</h2>
+            <p className={styles.eyebrow}>
+              When legal questions become business questions
+            </p>
+            <h2>
+              Advice grounded in the situation you are actually trying to solve.
+            </h2>
           </div>
 
           <div className={styles.needsImage}>
             <Image
-              src="/images/placeholder.webp"
+              src="https://nciholasegner.s3.us-east-2.amazonaws.com/counterpoint/group-1.webp"
               alt=""
               fill
               sizes="(max-width: 760px) 100vw, 50vw"
@@ -173,9 +176,9 @@ export default function Home() {
 
           <p className={styles.needsIntro}>
             Legal needs rarely arrive as neat categories. They show up while a
-            client is launching something, negotiating a deal, protecting valuable
-            work, managing a relationship, or deciding how to respond when a
-            disagreement threatens progress.
+            client is launching something, negotiating a deal, protecting
+            valuable work, managing a relationship, or deciding how to respond
+            when a disagreement threatens progress.
           </p>
         </div>
 
@@ -209,11 +212,11 @@ export default function Home() {
           <p className={styles.flatRateEyebrow}>Flat-Rate Legal Services</p>
           <h2>Clear scope. Predictable legal fees.</h2>
           <p>
-            Counterpoint Law uses flat-rate pricing rather than traditional hourly
-            billing. When the scope of a matter can be defined in advance, clients
-            know the legal fee before the work begins. That creates greater cost
-            transparency and keeps conversations focused on the legal and business
-            issues that matter.
+            Counterpoint Law uses flat-rate pricing rather than traditional
+            hourly billing. When the scope of a matter can be defined in
+            advance, clients know the legal fee before the work begins. That
+            creates greater cost transparency and keeps conversations focused on
+            the legal and business issues that matter.
           </p>
           <Link href="#contact" className={styles.flatRateCta}>
             Ask About Flat-Rate Services <span aria-hidden="true">→</span>
