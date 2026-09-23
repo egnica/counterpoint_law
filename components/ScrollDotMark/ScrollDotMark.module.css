@@ -4,6 +4,7 @@
 
 .mark {
   --split-y: 100%;
+  --overscan: clamp(180px, 16vw, 260px);
   position: absolute;
   z-index: 0;
   width: clamp(720px, 68vw, 1080px);
@@ -15,22 +16,22 @@
 
 .layer {
   position: absolute;
-  inset: 0;
+  inset: calc(var(--overscan) * -1);
   pointer-events: none;
 }
 
 .upperLayer {
-  clip-path: inset(0 0 calc(100% - var(--split-y)) 0);
+  clip-path: inset(0 0 calc(100% - (var(--split-y) + var(--overscan))) 0);
   opacity: 0.09;
 }
 
 .lowerLayer {
-  clip-path: inset(var(--split-y) 0 0 0);
+  clip-path: inset(calc(var(--split-y) + var(--overscan)) 0 0 0);
 }
 
 .dots {
   position: absolute;
-  inset: 0;
+  inset: var(--overscan);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(54px, 6vw, 98px);
