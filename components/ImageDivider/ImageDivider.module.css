@@ -1,6 +1,6 @@
 .frame {
   position: relative;
-  height: clamp(190px, 18vw, 285px);
+  height: clamp(280px, 26vw, 400px);
   overflow: hidden;
   background: var(--cp-navy);
   isolation: isolate;
@@ -30,15 +30,40 @@
   filter: saturate(0.88) contrast(1.04);
 }
 
+.wordmark {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+  font-size: clamp(4.4rem, 12.5vw, 12.5rem);
+  font-weight: 850;
+  letter-spacing: -0.055em;
+  line-height: 0.8;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0.1;
+  pointer-events: none;
+  user-select: none;
+}
+
 @media (max-width: 760px) {
   .frame {
-    height: 175px;
+    height: 220px;
   }
 
   .imageLayer {
     inset: -28px 0;
     transform: none !important;
     will-change: auto;
+  }
+
+  .wordmark {
+    font-size: 12.3vw;
+    opacity: 0.09;
   }
 }
 
