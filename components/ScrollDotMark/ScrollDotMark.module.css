@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(54px, 6vw, 98px);
-  opacity: 0.055;
+  opacity: 0.09;
   transform: rotate(0deg);
   transform-origin: center;
   will-change: transform;
@@ -30,7 +30,7 @@
     width: 820px;
     right: -400px;
     top: 34%;
-    opacity: 0.045;
+    opacity: 0.075;
   }
 }
 
@@ -39,7 +39,7 @@
     width: 640px;
     right: -430px;
     top: 44%;
-    opacity: 0.04;
+    opacity: 0.065;
   }
 }
 
