@@ -20,7 +20,7 @@ export default function ScrollDotMark() {
 
     function updateRotation() {
       frameId = null;
-      const rotation = window.scrollY * 0.035;
+      const rotation = window.scrollY * 0.09;
       mark.style.transform = `rotate(${rotation}deg)`;
     }
 
