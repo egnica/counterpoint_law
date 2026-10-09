@@ -25,7 +25,7 @@ export default function VincentPeppePage() {
         <DotMark />
 
         <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>About Counterpoint Law</p>
+          <p className={styles.eyebrow}>About Counterpoint&nbsp;Law</p>
           <h1>Vincent Peppe</h1>
           <p className={styles.lead}>
             Business-minded legal counsel for entrepreneurs, companies,

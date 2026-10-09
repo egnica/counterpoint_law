@@ -25,7 +25,7 @@ export default function FlatRateServicesPage() {
         <DotMark />
 
         <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>Counterpoint Law</p>
+          <p className={styles.eyebrow}>Counterpoint&nbsp;Law</p>
           <h1>Flat-Rate Legal Services</h1>
           <p className={styles.lead}>
             Clear scope and predictable legal fees, without the uncertainty of
@@ -41,7 +41,7 @@ export default function FlatRateServicesPage() {
           <div className={styles.contentCopy}>
             <h2>Know the legal fee before the work begins.</h2>
             <p>
-              Counterpoint Law uses flat-rate pricing for matters where the scope
+              Counterpoint&nbsp;Law uses flat-rate pricing for matters where the scope
               of work can be defined in advance. The goal is greater cost
               transparency and conversations focused on the legal and business
               issues that matter.

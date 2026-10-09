@@ -26,7 +26,7 @@ export default function SiteFooter() {
         <div className={styles.identity}>
           <Link href="/" className={styles.brand}>
             <DotMark />
-            <span>Counterpoint Law</span>
+            <span>Counterpoint&nbsp;Law</span>
           </Link>
           <p>
             Business, technology, entertainment, intellectual-property, and
@@ -44,7 +44,7 @@ export default function SiteFooter() {
       </div>
 
       <div className={styles.bottom}>
-        <span>© {new Date().getFullYear()} Counterpoint Law.</span>
+        <span>© {new Date().getFullYear()} Counterpoint&nbsp;Law.</span>
         <span>Attorney advertising. Prior results do not guarantee a similar outcome.</span>
       </div>
     </footer>

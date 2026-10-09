@@ -64,7 +64,7 @@ export default function SiteHeader({ featuredPractices = [] }) {
       <div className={styles.bar}>
         <Link href="/" className={styles.brand} onClick={closeMenu}>
           <DotMark />
-          <span>Counterpoint Law</span>
+          <span>Counterpoint&nbsp;Law</span>
         </Link>
 
         <div className={styles.actions}>

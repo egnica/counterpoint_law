@@ -86,7 +86,7 @@ function PracticeAreaDirectory() {
           </div>
 
           <p>
-            View every Counterpoint Law practice area alphabetically or explore
+            View every Counterpoint&nbsp;Law practice area alphabetically or explore
             the primary categories above.
           </p>
         </div>
@@ -115,12 +115,12 @@ export default function PracticeAreasPage() {
       <section className={styles.hero} aria-labelledby="practice-areas-heading">
         <div className={styles.constrained}>
           <div className={styles.heroIntroduction}>
-            <p className={styles.eyebrow}>Counterpoint Law</p>
+            <p className={styles.eyebrow}>Counterpoint&nbsp;Law</p>
 
             <h1 id="practice-areas-heading">Practice Areas</h1>
 
             <p className={styles.heroSummary}>
-              Counterpoint Law provides practical legal guidance across
+              Counterpoint&nbsp;Law provides practical legal guidance across
               business, technology, entertainment, intellectual property, and
               dispute resolution. Explore a primary practice area or browse the
               complete service directory.

@@ -318,7 +318,7 @@ function PracticeAreaHero({ navigationParent, practiceArea }) {
             <span>{backLabel}</span>
           </Link>
 
-          <p className={styles.eyebrow}>Counterpoint Law</p>
+          <p className={styles.eyebrow}>Counterpoint&nbsp;Law</p>
           <h1>{practiceArea.title}</h1>
 
           {practiceArea.summary ? (

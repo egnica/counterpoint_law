@@ -70,7 +70,7 @@ export default function Home() {
 
         <div className={styles.heroInner}>
           <div className={styles.heroCopy}>
-            <h1 id="home-title">Counterpoint Law</h1>
+            <h1 id="home-title">Counterpoint&nbsp;Law</h1>
             <p className={styles.heroTagline}>
               Legal Counsel for Business Owners, Innovators, and Creators
             </p>
@@ -117,7 +117,7 @@ export default function Home() {
         <ScrollDotMark />
 
         <div className={styles.sectionIntro}>
-          <p className={styles.eyebrow}>Counterpoint Law</p>
+          <p className={styles.eyebrow}>Counterpoint&nbsp;Law</p>
           <h2 className={styles.verticalHeadline}>
             <span>Legal</span>
             <span>strategy</span>
@@ -129,7 +129,7 @@ export default function Home() {
 
         <div className={styles.positioningCopy}>
           <p>
-            Counterpoint Law works with entrepreneurs, business owners,
+            Counterpoint&nbsp;Law works with entrepreneurs, business owners,
             technology companies, creators, artists, producers, and other
             professionals whose legal questions are closely connected to the
             work they are building.
@@ -224,7 +224,7 @@ export default function Home() {
           <p className={styles.flatRateEyebrow}>Flat-Rate Legal Services</p>
           <h2>Clear scope. Predictable legal fees.</h2>
           <p>
-            Counterpoint Law uses flat-rate pricing rather than traditional
+            Counterpoint&nbsp;Law uses flat-rate pricing rather than traditional
             hourly billing. When the scope of a matter can be defined in
             advance, clients know the legal fee before the work begins. That
             creates greater cost transparency and keeps conversations focused on
