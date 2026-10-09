@@ -72,7 +72,7 @@ export default function Home() {
           <div className={styles.heroCopy}>
             <h1 id="home-title">Counterpoint Law</h1>
             <p className={styles.heroTagline}>
-              Legal counsel for businesses, creators and innovators.
+              Legal Counsel for Business Owners, Innovators, and Creators
             </p>
             <p className={styles.heroBody}>
               Practical, business-minded guidance for contracts, transactions,
